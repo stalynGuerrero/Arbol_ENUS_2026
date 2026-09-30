@@ -90,10 +90,10 @@ class TreeLayoutEngine {
             "depto_bogota": 6, "depto_oriental": 6, "depto_caribe": 6, "depto_central": 6, "depto_pacifica": 6, "depto_orinoquia": 6,
             "zona": 7, "zona_urbano": 8, "zona_rural": 8,
             "regimen": 9, "regimen_contributivo": 10, "regimen_subsidiado": 10,
-            "pregunta_b0": 11,
-            "entidad_eps": 12, "entidad_ips": 12, "entidad_gestor": 12,
-            "servicio_eps": 13, "servicio_ips": 13, "servicio_gestor": 13,
-            "sub_ambulatorio_eps": 14, "sub_otro_eps": 14, "sub_ambulatorio_ips": 14, "sub_urgencias_ips": 14, "sub_internacion_ips": 14, "sub_quirurgico_ips": 14, "sub_medicamentos_gestor": 14, "sub_no_medicamentos_gestor": 14,
+            "parte2": 11,
+            "sorteo_bernoulli": 12,
+            "fin_sin_parte3": 13, "entidad_eps": 13, "entidad_ips": 13, "entidad_gestor": 13,
+            "asignacion_eps": 14, "asignacion_ips": 14,
             "eps_m1": 15, "eps_m2": 15, "eps_m3": 15, "ips_m1": 15, "ips_m2": 15, "ips_m3": 15, "ips_m4": 15, "gestor_m1": 15
         };
     }

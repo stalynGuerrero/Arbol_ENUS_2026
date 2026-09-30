@@ -35,32 +35,32 @@ const NodesData = [
     { id: "regimen_subsidiado", label: "Subsidiado", type: "base", block: "BLOQUE_1" },
 
     // ==========================================================================
-    // BLOQUE 2: PREGUNTA TRAZADORA (Preguntas de Decisión)
+    // BLOQUE 2: PARTE 2 — PREGUNTAS COMUNES (respuestas directas del usuario)
     // ==========================================================================
-    { id: "pregunta_b0", label: "¿Ha utilizado servicios de salud?", type: "decision", block: "BLOQUE_2" },
+    { id: "parte2", label: "Responde Parte 2 (preguntas comunes)", type: "base", block: "BLOQUE_2" },
 
     // ==========================================================================
-    // BLOQUE 3: GESTIÓN INSTITUCIONAL (Entidades y Servicios)
+    // BLOQUE 2B: SORTEO BERNOULLI (solo primer ingreso; define acceso a Parte 3)
+    // ==========================================================================
+    { id: "sorteo_bernoulli", label: "Sorteo Bernoulli u~U(0,1), π=0,8", type: "decision", block: "BLOQUE_2B" },
+    { id: "fin_sin_parte3", label: "Fin de la encuesta (sin Parte 3)", type: "base", block: "BLOQUE_2B" },
+
+    // ==========================================================================
+    // BLOQUE 3: ACTOR DE LA ATENCIÓN (lo determina la atención registrada que
+    // originó la invitación; la persona no lo elige)
     // ==========================================================================
     { id: "entidad_eps", label: "Empresa Prestadora (EPS)", type: "entidad", block: "BLOQUE_3" },
     { id: "entidad_ips", label: "Institución Prestadora (IPS)", type: "entidad", block: "BLOQUE_3" },
     { id: "entidad_gestor", label: "Entidad Gestora Farmacéutica", type: "entidad", block: "BLOQUE_3" },
 
-    { id: "servicio_eps", label: "¿Qué servicio utilizó en EPS?", type: "decision", block: "BLOQUE_3" },
-    { id: "servicio_ips", label: "¿Qué servicio utilizó en IPS?", type: "decision", block: "BLOQUE_3" },
-    { id: "servicio_gestor", label: "¿El acceso fue por medicamentos?", type: "decision", block: "BLOQUE_3" },
-
-    { id: "sub_ambulatorio_eps", label: "Ambulatorio", type: "base", block: "BLOQUE_3" },
-    { id: "sub_otro_eps", label: "Otro Servicio", type: "base", block: "BLOQUE_3" },
-    { id: "sub_ambulatorio_ips", label: "Ambulatorio", type: "base", block: "BLOQUE_3" },
-    { id: "sub_urgencias_ips", label: "Urgencias", type: "base", block: "BLOQUE_3" },
-    { id: "sub_internacion_ips", label: "Internación", type: "base", block: "BLOQUE_3" },
-    { id: "sub_quirurgico_ips", label: "Quirúrgico", type: "base", block: "BLOQUE_3" },
-    { id: "sub_medicamentos_gestor", label: "Medicamentos", type: "base", block: "BLOQUE_3" },
-    { id: "sub_no_medicamentos_gestor", label: "No Medicamentos", type: "base", block: "BLOQUE_3" },
+    // ==========================================================================
+    // BLOQUE 4: ASIGNACIÓN ALEATORIA DE MÓDULO DENTRO DEL ACTOR DE LA ATENCIÓN
+    // ==========================================================================
+    { id: "asignacion_eps", label: "Asignación aleatoria (P=1/3 por módulo)", type: "decision", block: "BLOQUE_4" },
+    { id: "asignacion_ips", label: "Asignación aleatoria (P=1/4 por módulo)", type: "decision", block: "BLOQUE_4" },
 
     // ==========================================================================
-    // BLOQUE 4: MÓDULOS FINALES
+    // BLOQUE 5: MÓDULOS FINALES (Parte 3)
     // ==========================================================================
     { id: "eps_m1", label: "EPS Módulo 1", type: "modulo", block: "MODULO_EPS_M1" },
     { id: "eps_m2", label: "EPS Módulo 2", type: "modulo", block: "MODULO_EPS_M2" },

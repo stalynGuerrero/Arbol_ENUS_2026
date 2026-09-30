@@ -11,121 +11,121 @@ class RoutesManager {
          * Cada ruta contiene la lista exacta de nodos desde la raíz hasta el módulo final.
          */
         this.routes = {
-            "ruta_1": {
-                id: "ruta_1",
-                name: "Ruta 1: Sin Uso de Servicios",
-                description: "Evaluación de barreras de acceso en ciudadanos que responden NO a la pregunta trazadora B0.",
+            "ruta_0": {
+                id: "ruta_0",
+                name: "Desenlace 0: Sorteo negativo (sin Parte 3)",
+                description: "El sorteo Bernoulli resulta u>0,8: la encuesta finaliza al terminar Parte 2, sin Parte 3 ni módulo específico.",
                 nodes: [
-                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad", 
-                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39", 
+                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad",
+                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39",
                     "grupo_edad_40_49", "grupo_edad_50_59", "grupo_edad_60_mas",
                     "departamento", "depto_bogota", "depto_oriental", "depto_caribe", "depto_central", "depto_pacifica", "depto_orinoquia",
                     "zona", "zona_urbano", "zona_rural", "regimen", "regimen_contributivo", "regimen_subsidiado",
-                    "pregunta_b0", "eps_m1"
+                    "parte2", "sorteo_bernoulli", "fin_sin_parte3"
+                ]
+            },
+            "ruta_1": {
+                id: "ruta_1",
+                name: "Desenlace 1: EPS - Módulo 1 (asignación aleatoria)",
+                description: "Sorteo positivo; la atención que originó la invitación fue con la EPS y el sistema le asigna al azar (P=1/3) el Módulo 1.",
+                nodes: [
+                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad",
+                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39",
+                    "grupo_edad_40_49", "grupo_edad_50_59", "grupo_edad_60_mas",
+                    "departamento", "depto_bogota", "depto_oriental", "depto_caribe", "depto_central", "depto_pacifica", "depto_orinoquia",
+                    "zona", "zona_urbano", "zona_rural", "regimen", "regimen_contributivo", "regimen_subsidiado",
+                    "parte2", "sorteo_bernoulli", "entidad_eps", "asignacion_eps", "eps_m1"
                 ]
             },
             "ruta_2": {
                 id: "ruta_2",
-                name: "Ruta 2: EPS - Ambulatorio",
-                description: "Ciudadanos asistidos por EPS cuyo último servicio fue de tipo Ambulatorio (Consulta Externa) -> Redirige a EPS Módulo 3.",
+                name: "Desenlace 2: EPS - Módulo 2 (asignación aleatoria)",
+                description: "Sorteo positivo; la atención que originó la invitación fue con la EPS y el sistema le asigna al azar (P=1/3) el Módulo 2.",
                 nodes: [
-                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad", 
-                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39", 
+                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad",
+                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39",
                     "grupo_edad_40_49", "grupo_edad_50_59", "grupo_edad_60_mas",
                     "departamento", "depto_bogota", "depto_oriental", "depto_caribe", "depto_central", "depto_pacifica", "depto_orinoquia",
                     "zona", "zona_urbano", "zona_rural", "regimen", "regimen_contributivo", "regimen_subsidiado",
-                    "pregunta_b0", "entidad_eps", "servicio_eps", "sub_ambulatorio_eps", "eps_m3"
+                    "parte2", "sorteo_bernoulli", "entidad_eps", "asignacion_eps", "eps_m2"
                 ]
             },
             "ruta_3": {
                 id: "ruta_3",
-                name: "Ruta 3: EPS - Otro Servicio",
-                description: "Ciudadanos asistidos por EPS que utilizaron servicios clasificados como Urgencias, Internación o Especializado -> Redirige a EPS Módulo 2.",
+                name: "Desenlace 3: EPS - Módulo 3 (asignación aleatoria)",
+                description: "Sorteo positivo; la atención que originó la invitación fue con la EPS y el sistema le asigna al azar (P=1/3) el Módulo 3.",
                 nodes: [
-                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad", 
-                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39", 
+                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad",
+                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39",
                     "grupo_edad_40_49", "grupo_edad_50_59", "grupo_edad_60_mas",
                     "departamento", "depto_bogota", "depto_oriental", "depto_caribe", "depto_central", "depto_pacifica", "depto_orinoquia",
                     "zona", "zona_urbano", "zona_rural", "regimen", "regimen_contributivo", "regimen_subsidiado",
-                    "pregunta_b0", "entidad_eps", "servicio_eps", "sub_otro_eps", "eps_m2"
+                    "parte2", "sorteo_bernoulli", "entidad_eps", "asignacion_eps", "eps_m3"
                 ]
             },
             "ruta_4": {
                 id: "ruta_4",
-                name: "Ruta 4: IPS - Ambulatorio",
-                description: "Gestión directa en IPS para atención ambulatoria básica y consultas externas médicas -> Redirige a IPS Módulo 1.",
+                name: "Desenlace 4: IPS - Módulo 1 (asignación aleatoria)",
+                description: "Sorteo positivo; la atención que originó la invitación fue con una IPS y el sistema le asigna al azar (P=1/4) el Módulo 1.",
                 nodes: [
-                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad", 
-                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39", 
+                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad",
+                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39",
                     "grupo_edad_40_49", "grupo_edad_50_59", "grupo_edad_60_mas",
                     "departamento", "depto_bogota", "depto_oriental", "depto_caribe", "depto_central", "depto_pacifica", "depto_orinoquia",
                     "zona", "zona_urbano", "zona_rural", "regimen", "regimen_contributivo", "regimen_subsidiado",
-                    "pregunta_b0", "entidad_ips", "servicio_ips", "sub_ambulatorio_ips", "ips_m1"
+                    "parte2", "sorteo_bernoulli", "entidad_ips", "asignacion_ips", "ips_m1"
                 ]
             },
             "ruta_5": {
                 id: "ruta_5",
-                name: "Ruta 5: IPS - Urgencias",
-                description: "Atención de emergencias médicas de complejidad variable ejecutada dentro de la red hospitalaria -> Redirige a IPS Módulo 2.",
+                name: "Desenlace 5: IPS - Módulo 2 (asignación aleatoria)",
+                description: "Sorteo positivo; la atención que originó la invitación fue con una IPS y el sistema le asigna al azar (P=1/4) el Módulo 2.",
                 nodes: [
-                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad", 
-                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39", 
+                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad",
+                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39",
                     "grupo_edad_40_49", "grupo_edad_50_59", "grupo_edad_60_mas",
                     "departamento", "depto_bogota", "depto_oriental", "depto_caribe", "depto_central", "depto_pacifica", "depto_orinoquia",
                     "zona", "zona_urbano", "zona_rural", "regimen", "regimen_contributivo", "regimen_subsidiado",
-                    "pregunta_b0", "entidad_ips", "servicio_ips", "sub_urgencias_ips", "ips_m2"
+                    "parte2", "sorteo_bernoulli", "entidad_ips", "asignacion_ips", "ips_m2"
                 ]
             },
             "ruta_6": {
                 id: "ruta_6",
-                name: "Ruta 6: IPS - Internación",
-                description: "Población hospitalizada con pernoctación prolongada y asignación de cama clínica -> Redirige a IPS Módulo 3.",
+                name: "Desenlace 6: IPS - Módulo 3 (asignación aleatoria)",
+                description: "Sorteo positivo; la atención que originó la invitación fue con una IPS y el sistema le asigna al azar (P=1/4) el Módulo 3.",
                 nodes: [
-                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad", 
-                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39", 
+                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad",
+                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39",
                     "grupo_edad_40_49", "grupo_edad_50_59", "grupo_edad_60_mas",
                     "departamento", "depto_bogota", "depto_oriental", "depto_caribe", "depto_central", "depto_pacifica", "depto_orinoquia",
                     "zona", "zona_urbano", "zona_rural", "regimen", "regimen_contributivo", "regimen_subsidiado",
-                    "pregunta_b0", "entidad_ips", "servicio_ips", "sub_internacion_ips", "ips_m3"
+                    "parte2", "sorteo_bernoulli", "entidad_ips", "asignacion_ips", "ips_m3"
                 ]
             },
             "ruta_7": {
                 id: "ruta_7",
-                name: "Ruta 7: IPS - Quirúrgico",
-                description: "Procedimientos e intervenciones quirúrgicas mayores o menores realizadas en salas de cirugía -> Redirige a IPS Módulo 4.",
+                name: "Desenlace 7: IPS - Módulo 4 (asignación aleatoria)",
+                description: "Sorteo positivo; la atención que originó la invitación fue con una IPS y el sistema le asigna al azar (P=1/4) el Módulo 4.",
                 nodes: [
-                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad", 
-                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39", 
+                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad",
+                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39",
                     "grupo_edad_40_49", "grupo_edad_50_59", "grupo_edad_60_mas",
                     "departamento", "depto_bogota", "depto_oriental", "depto_caribe", "depto_central", "depto_pacifica", "depto_orinoquia",
                     "zona", "zona_urbano", "zona_rural", "regimen", "regimen_contributivo", "regimen_subsidiado",
-                    "pregunta_b0", "entidad_ips", "servicio_ips", "sub_quirurgico_ips", "ips_m4"
+                    "parte2", "sorteo_bernoulli", "entidad_ips", "asignacion_ips", "ips_m4"
                 ]
             },
             "ruta_8": {
                 id: "ruta_8",
-                name: "Ruta 8: Gestor - Medicamentos",
-                description: "Acceso gestionado para entrega efectiva de insumos médicos y fórmulas farmacológicas -> Redirige a Gestor Módulo 1.",
+                name: "Desenlace 8: Gestor - Módulo 1 (único módulo)",
+                description: "Sorteo positivo; la atención que originó la invitación fue con el gestor farmacéutico; al existir un único módulo, la asignación es determinística (P=1).",
                 nodes: [
-                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad", 
-                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39", 
+                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad",
+                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39",
                     "grupo_edad_40_49", "grupo_edad_50_59", "grupo_edad_60_mas",
                     "departamento", "depto_bogota", "depto_oriental", "depto_caribe", "depto_central", "depto_pacifica", "depto_orinoquia",
                     "zona", "zona_urbano", "zona_rural", "regimen", "regimen_contributivo", "regimen_subsidiado",
-                    "pregunta_b0", "entidad_gestor", "servicio_gestor", "sub_medicamentos_gestor", "gestor_m1"
-                ]
-            },
-            "ruta_9": {
-                id: "ruta_9",
-                name: "Ruta 9: Gestor - No Medicamentos",
-                description: "Población que acudió al Gestor Farmacéutico para trámites administrativos u otros servicios no médicos -> Redirige transversalmente a EPS Módulo 2.",
-                nodes: [
-                    "cedula", "sexo", "sexo_hombre", "sexo_mujer", "edad", 
-                    "grupo_edad_0_9", "grupo_edad_10_19", "grupo_edad_20_29", "grupo_edad_30_39", 
-                    "grupo_edad_40_49", "grupo_edad_50_59", "grupo_edad_60_mas",
-                    "departamento", "depto_bogota", "depto_oriental", "depto_caribe", "depto_central", "depto_pacifica", "depto_orinoquia",
-                    "zona", "zona_urbano", "zona_rural", "regimen", "regimen_contributivo", "regimen_subsidiado",
-                    "pregunta_b0", "entidad_gestor", "servicio_gestor", "sub_no_medicamentos_gestor", "eps_m2"
+                    "parte2", "sorteo_bernoulli", "entidad_gestor", "gestor_m1"
                 ]
             }
         };
@@ -168,15 +168,16 @@ class RoutesManager {
     /**
      * Calcula el camino real desde la raíz del árbol (Cédula) hasta el nodo indicado.
      *
-     * Los Bloques 1 y 2 (caracterización + pregunta trazadora B0) son un tronco común:
+     * Los Bloques 1 a 2B (caracterización + Parte 2 + sorteo Bernoulli) son un tronco común:
      * cada pregunta reconverge en una única siguiente pregunta sin importar la respuesta
      * previa (ej. Departamento sigue igual sea cual sea el Sexo o el Grupo de Edad elegido).
      * Elegir una sola rama "primera" ahí producía siempre el mismo camino arbitrario
      * (Hombre > 0-9 > Bogotá > Urbano > Contributivo). En su lugar, para ese tramo se listan
      * TODAS las opciones de cada nivel inferior y solo el nodo propio en el nivel del clic.
      *
-     * Los Bloques 3 y 4 (Entidad > Servicio > Módulo) sí son una bifurcación real, así que
-     * ese tramo se reconstruye remontando las aristas específicas hasta la pregunta B0.
+     * Los Bloques 3 y 4 (Actor de la atención > Asignación aleatoria > Módulo) sí son una
+     * bifurcación real, así que ese tramo se reconstruye remontando las aristas específicas
+     * hasta el nodo del sorteo Bernoulli.
      *
      * @param {string} nodeId
      * @returns {Array<string>} Secuencia de IDs de nodos desde la raíz hasta el nodo.
@@ -186,7 +187,7 @@ class RoutesManager {
         const targetRank = ranks[nodeId];
         if (targetRank === undefined) return [nodeId];
 
-        const traceRank = ranks["pregunta_b0"];
+        const traceRank = ranks["sorteo_bernoulli"];
         const sharedUpperRank = Math.min(targetRank, traceRank);
 
         const path = [];
@@ -198,7 +199,7 @@ class RoutesManager {
             });
         }
 
-        // Tramo institucional real (Bloques 3 y 4), remontado nodo a nodo desde el clic hasta B0
+        // Tramo institucional real (Bloques 3 y 4), remontado nodo a nodo desde el clic hasta el sorteo Bernoulli
         if (targetRank > traceRank) {
             const institutionalPath = [nodeId];
             const visited = new Set([nodeId]);
@@ -212,7 +213,7 @@ class RoutesManager {
                 current = parentEdge.source;
             }
 
-            path.push(...institutionalPath.filter(id => id !== "pregunta_b0"));
+            path.push(...institutionalPath.filter(id => id !== "sorteo_bernoulli"));
         }
 
         return path;

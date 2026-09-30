@@ -54,52 +54,41 @@ const EdgesData = [
     { source: "regimen", target: "regimen_contributivo" },
     { source: "regimen", target: "regimen_subsidiado" },
 
-    // Conexión unificada de la caracterización hacia la pregunta trazadora B0
-    { source: "regimen_contributivo", target: "pregunta_b0" },
-    { source: "regimen_subsidiado", target: "pregunta_b0" },
+    // Conexión unificada de la caracterización hacia Parte 2 (preguntas comunes)
+    { source: "regimen_contributivo", target: "parte2" },
+    { source: "regimen_subsidiado", target: "parte2" },
+
+    // Al finalizar Parte 2, se ejecuta el sorteo Bernoulli (solo primer ingreso)
+    { source: "parte2", target: "sorteo_bernoulli" },
 
     // ==========================================================================
-    // ENRUTAMIENTO LÓGICO DE LAS 9 RUTAS (Filtros y Decisiones)
+    // ENRUTAMIENTO LÓGICO DE LOS 9 DESENLACES POSIBLES DEL MECANISMO
+    // (sorteo Bernoulli -> elección de prestador -> asignación aleatoria de módulo)
     // ==========================================================================
-    
-    // RUTA 1: B0 = NO -> EPS M1
-    { source: "pregunta_b0", target: "eps_m1", label: "NO" },
 
-    // B0 = SI -> Distribución a Entidades Gestoras principales
-    { source: "pregunta_b0", target: "entidad_eps", label: "SI" },
-    { source: "pregunta_b0", target: "entidad_ips", label: "SI" },
-    { source: "pregunta_b0", target: "entidad_gestor", label: "SI" },
+    // DESENLACE 0: u > 0,8 -> la encuesta finaliza sin Parte 3
+    { source: "sorteo_bernoulli", target: "fin_sin_parte3", label: "NO (u>0,8)" },
 
-    // Flujo institucional dentro de la Empresa Prestadora (EPS)
-    { source: "entidad_eps", target: "servicio_eps" },
-    { source: "servicio_eps", target: "sub_ambulatorio_eps", label: "Ambulatorio" },
-    { source: "servicio_eps", target: "sub_otro_eps", label: "Otro servicio" },
-    
-    // RUTA 2 y RUTA 3 (Módulos de salida de EPS)
-    { source: "sub_ambulatorio_eps", target: "eps_m3" }, // Ruta 2 -> EPS M3
-    { source: "sub_otro_eps", target: "eps_m2" },        // Ruta 3 -> EPS M2
+    // u <= 0,8 -> Parte 3 del actor de la atención que originó la invitación (no lo elige la persona)
+    { source: "sorteo_bernoulli", target: "entidad_eps", label: "SI (u≤0,8)" },
+    { source: "sorteo_bernoulli", target: "entidad_ips", label: "SI (u≤0,8)" },
+    { source: "sorteo_bernoulli", target: "entidad_gestor", label: "SI (u≤0,8)" },
 
-    // Flujo institucional dentro de la Institución Prestadora (IPS)
-    { source: "entidad_ips", target: "servicio_ips" },
-    { source: "servicio_ips", target: "sub_ambulatorio_ips", label: "Ambulatorio" },
-    { source: "servicio_ips", target: "sub_urgencias_ips", label: "Urgencias" },
-    { source: "servicio_ips", target: "sub_internacion_ips", label: "Internación" },
-    { source: "servicio_ips", target: "sub_quirurgico_ips", label: "Quirúrgico" },
+    // Asignación aleatoria de módulo dentro de la EPS de la atención (P = 1/3 por módulo)
+    { source: "entidad_eps", target: "asignacion_eps" },
+    { source: "asignacion_eps", target: "eps_m1", label: "1/3" }, // Desenlace 1
+    { source: "asignacion_eps", target: "eps_m2", label: "1/3" }, // Desenlace 2
+    { source: "asignacion_eps", target: "eps_m3", label: "1/3" }, // Desenlace 3
 
-    // RUTA 4, 5, 6 y 7 (Módulos de salida de IPS)
-    { source: "sub_ambulatorio_ips", target: "ips_m1" }, // Ruta 4 -> IPS M1
-    { source: "sub_urgencias_ips", target: "ips_m2" },   // Ruta 5 -> IPS M2
-    { source: "sub_internacion_ips", target: "ips_m3" }, // Ruta 6 -> IPS M3
-    { source: "sub_quirurgico_ips", target: "ips_m4" },   // Ruta 7 -> IPS M4
+    // Asignación aleatoria de módulo dentro de la IPS de la atención (P = 1/4 por módulo)
+    { source: "entidad_ips", target: "asignacion_ips" },
+    { source: "asignacion_ips", target: "ips_m1", label: "1/4" }, // Desenlace 4
+    { source: "asignacion_ips", target: "ips_m2", label: "1/4" }, // Desenlace 5
+    { source: "asignacion_ips", target: "ips_m3", label: "1/4" }, // Desenlace 6
+    { source: "asignacion_ips", target: "ips_m4", label: "1/4" }, // Desenlace 7
 
-    // Flujo institucional dentro de la Entidad Gestora Farmacéutica
-    { source: "entidad_gestor", target: "servicio_gestor" },
-    { source: "servicio_gestor", target: "sub_medicamentos_gestor", label: "Medicamentos" },
-    { source: "servicio_gestor", target: "sub_no_medicamentos_gestor", label: "No medicamentos" },
-
-    // RUTA 8 y RUTA 9 (Módulos de salida de Gestor)
-    { source: "sub_medicamentos_gestor", target: "gestor_m1" },   // Ruta 8 -> Gestor M1
-    { source: "sub_no_medicamentos_gestor", target: "eps_m2" }    // Ruta 9 -> EPS M2 (Enrutamiento transversal)
+    // Gestor farmacéutico: módulo único, sin asignación probabilística (P = 1)
+    { source: "entidad_gestor", target: "gestor_m1", label: "1 (único módulo)" } // Desenlace 8
 ];
 
 // Congelar la colección para asegurar la inmutabilidad de la matriz topológica de enlaces

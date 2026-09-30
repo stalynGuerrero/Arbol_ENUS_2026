@@ -13,20 +13,32 @@ const ModulesData = {
     },
     "BLOQUE_2": {
         id: "BLOQUE_2",
-        name: "Pregunta Trazadora (B0)",
-        description: "Filtro dicotómico principal para identificar el uso y acceso efectivo a los servicios de salud en los últimos 6 meses.",
+        name: "Parte 2 — Preguntas comunes",
+        description: "Preguntas de respuesta directa del usuario sobre experiencia general de atención y servicio (máx. 20-25 preguntas). Todas las personas que avanzan más allá de Parte 1 la responden; en ingresos posteriores al primero, ya completada, no se repite.",
+        color: "var(--color-decision-naranja)"
+    },
+    "BLOQUE_2B": {
+        id: "BLOQUE_2B",
+        name: "Sorteo Bernoulli",
+        description: "Al finalizar Parte 2 se genera u~Uniforme(0,1) con corte π=0,8: si u≤0,8 la persona responde la Parte 3 del actor (EPS, IPS o gestor farmacéutico) de la atención registrada que originó la invitación; si u>0,8 la encuesta finaliza. Aplica solo en el primer ingreso; en ingresos posteriores no hay sorteo y se accede directamente a la Parte 3 del actor de la atención que originó esa invitación.",
         color: "var(--color-decision-naranja)"
     },
     "BLOQUE_3": {
         id: "BLOQUE_3",
-        name: "Gestión Institucional",
-        description: "Clasificación de entidades y sub-servicios específicos que operaron en la atención del ciudadano.",
+        name: "Actor de la atención",
+        description: "La persona no elige el actor que evalúa: la Parte 3 corresponde al actor (EPS, IPS o gestor farmacéutico) que prestó el servicio registrado en la atención que originó la invitación (decisión de septiembre de 2026). El actor evaluado queda bloqueado 1 año calendario para esa persona; solo se invita por atenciones con actores no bloqueados. Las entidades no se seleccionan probabilísticamente: son objeto de medición, no unidades muestrales.",
         color: "var(--color-entidad-verde)"
+    },
+    "BLOQUE_4": {
+        id: "BLOQUE_4",
+        name: "Asignación aleatoria de módulo",
+        description: "Dentro del actor de la atención, el sistema asigna aleatoriamente uno de sus módulos disponibles: P(módulo | actor) = 1/n_actor. El módulo asignado puede no coincidir con el servicio efectivamente recibido (sesgo de disponibilidad reconocido en las limitaciones del diseño).",
+        color: "var(--color-decision-naranja)"
     },
     "MODULO_EPS_M1": {
         id: "MODULO_EPS_M1",
         name: "EPS Módulo 1",
-        description: "Formulario enfocado en población que no reporta uso de servicios de salud. Evalúa barreras de acceso generales.",
+        description: "Formulario originalmente enfocado en población que no reporta uso de servicios de salud (barreras de acceso). Pendiente de definición: este contenido es inconsistente con el criterio de elegibilidad vigente (registro BDUA de uso efectivo de servicio), por lo que su rol dentro de la asignación aleatoria de módulos EPS debe revisarse.",
         questionsCount: 27,
         color: "var(--color-modulo-morado)"
     },
